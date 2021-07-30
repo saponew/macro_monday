@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Macro Monday</title>
+    </head>
+
+    <body>
+        <h2>Trades</h2>
+        ETH Price
+        <div id="trades">
+
+        </div>
+        <script>
+        var binanceSocket = new WebSocket("wss://stream.binance.us:9443/ws/ethusdt@trade");
+        
+        var tradeDiv = document.getElementById('trades')
+
+        binanceSocket.onmessage = function (event) {
+            console.log(event.data);
+            var messageObject = JSON.parse(event.data)
+            tradeDiv.append(messageObject.p)
+        }
+        
+        </script>
+    </body>
+
+</html>
